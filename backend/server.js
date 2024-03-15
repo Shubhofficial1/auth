@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import morgan from "morgan";
 
 // dotenv
 dotenv.config();
@@ -10,6 +11,7 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
 
 // Routes
 app.get("/", (req, res) => {
