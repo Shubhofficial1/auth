@@ -1,8 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
-const app = express();
+import authRoutes from "./routes/authRoutes.js";
 
+// dotenv
 dotenv.config();
+
+const app = express();
 
 // Middlewares
 app.use(express.json());
@@ -13,11 +16,7 @@ app.get("/", (req, res) => {
   res.send("Api is running....");
 });
 
-app.get("/api/v1/signup", (req, res) => {
-  res.json({
-    data: "Singup route",
-  });
-});
+app.use("/api/v1", authRoutes);
 
 // Listeners
 const PORT = process.env.PORT || 5000;
